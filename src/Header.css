@@ -1,0 +1,19 @@
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    background: coral;
+    padding: 10px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.login-form input{
+    margin: 2px;
+}
