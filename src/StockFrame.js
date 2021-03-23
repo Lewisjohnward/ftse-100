@@ -10,7 +10,12 @@ export default function StockFrame(props){
     const style = dayChange > 0 ? "green" : "red"
 
     return (
-        <div className= "stock-frame" style={{backgroundColor: style}}>
+        <div 
+            className= "stock-frame" 
+            style={{backgroundColor: style}}
+            onMouseEnter={() => console.log("mouse enter")}
+            onMouseLeave={() => console.log("mouse exit")}
+            >
             <h2>{props.data.companyName}</h2>
             <p>Start price: {props.data.dayStartPrice}</p>
             <p>Current price: {props.data.currentPrice}</p>
