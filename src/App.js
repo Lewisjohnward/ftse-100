@@ -3,12 +3,10 @@ import Header from "./Header"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import StockFrame from "./StockFrame"
+import {stockData} from "./stockdata"
 import "./App.css"
 
 export default function App(){
-  const [stockData, setStockData] = useState([])
-  const [mappedStocks, setMappedStocks] = useState()
-  const [displayStocks, setDisplayStocks] = useState(false)
 
   const stocks = ["AAPL", "TSLA", "MMM"]
 
@@ -24,25 +22,11 @@ export default function App(){
   }
 
   useEffect(() => {
-    for (let i = 0; i < stocks.length; i ++){
-      fetch(`https://${sandbox.api}/stable/stock/${stocks[i]}/quote?token=${sandbox.token}&period=annual/`)
-        .then(response => response.json())
-        .then(data => setStockData(prev => {
-          return [
-            ...prev, data
-          ]
-        }))
-    }
-    setDisplayStocks(true)
-    const mappedStocks1 = stockData.map(item => <p key={item}>test</p>)
-    setMappedStocks(mappedStocks1)
-    console.log("stocks mapped")
+
   }, [])
 
-  console.log(mappedStocks)
 
-
-
+  const mappedData = stockData.map(item => <StockFrame key={item.companyName} data={item}/>)
   
   
 
@@ -52,8 +36,10 @@ export default function App(){
     <div className="main">
       <Navbar />
       <div className="app">
-        <h1>This is the app component</h1>
-        {displayStocks? {mappedStocks}: "no"}
+        <h1 className="component-title">This is the app component</h1>
+        <div className="stockdata-grid">
+          {mappedData}
+        </div>
         <Footer />
       </div>
     </div>

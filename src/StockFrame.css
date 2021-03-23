@@ -1,0 +1,21 @@
+.stock-frame{
+    background: grey;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+h2{
+    text-align: center;
+}
+
+.green-background{
+    background: green;
+}
+
+.red-background{
+    background: red;
+}
+
+.stock-frame:hover{
+    transform: scale(1.5)
+}

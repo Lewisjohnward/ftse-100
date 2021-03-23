@@ -6,3 +6,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.stockdata-grid{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.component-title{
+    position: absolute;
+    opacity: 0.5;
+}
