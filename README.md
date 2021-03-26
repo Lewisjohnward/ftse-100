@@ -4,3 +4,4 @@
 -User authentication
 -User can choose favourite stocks
 -Order stocks
+-show hide stocks with price data

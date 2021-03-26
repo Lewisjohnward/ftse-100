@@ -17,16 +17,27 @@ export default function App(){
 
   const mappedData = stockData ?
     stockData.map(item => {
-      const regex = /[\w\s]*.?\d?/gi
-      const dataArray = item.content.$t.match(regex)
-      const companyName = ""
-      const price = 0
-      const change = 0
+
+      const nameRegex = /(?<=name:.).*?(?=,)/gi
+      const priceRegex = /(?<=price:.)[\w\s.]*(?=,)/gi
+      const changeRegex = /(?<=change:.).*/gi
+
+      const companyName = item.content.$t.match(nameRegex).toString() 
+      //console.log("name", companyName)
+
+      const sharePrice = item.content.$t.match(priceRegex) ? item.content.$t.match(priceRegex).toString() : null
+      //console.log("sharePrice", sharePrice)
+
+      const priceChange = item.content.$t.match(changeRegex) ? item.content.$t.match(changeRegex).toString() : null
+      //console.log("price change", priceChange)
+
+      const percentageChange = (Math.abs(priceChange) / sharePrice).toFixed(2)
+
       return (
-        <StockFrame key={dataArray[1]} data={dataArray} />
+        <StockFrame key={companyName}  companyName={companyName} sharePrice={sharePrice} priceChange={priceChange} percentageChange={percentageChange} />
       )
     }):
-  'null'
+  'Loading'
   
   return (  
     <>
@@ -34,7 +45,6 @@ export default function App(){
     <div className="main">
       <Navbar />
       <div className="app">
-        <h1 className="component-title">This is the app component</h1>
         <div className="stockdata-grid">
           {mappedData}
         </div>
